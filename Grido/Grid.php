@@ -112,6 +112,9 @@ class Grid extends \Nette\Application\UI\Control
     /** @var bool cache */
     protected $hasFilters, $hasActions, $hasOperations, $hasExporting;
 
+    /** @var bool */
+    public $applyLimitPaging = true;
+
     /**
      * Sets a model that implements the interface Grido\DataSources\IDataSource or data-source object.
      * @param mixed $model
@@ -435,7 +438,7 @@ class Grid extends \Nette\Application\UI\Control
             $this->applySorting();
 
             if ($applyPaging) {
-                $this->applyPaging();
+                $this->applyPaging($this->applyLimitPaging);
             }
 
             $this->data = $this->model->getData();
@@ -860,14 +863,22 @@ class Grid extends \Nette\Application\UI\Control
         }
     }
 
-    protected function applyPaging()
+    public function setCount(int $count)
+    {
+        $this->count = $count;
+    }
+
+    protected function applyPaging(bool $applyLimitPaging)
     {
         $paginator = $this->getPaginator()
             ->setItemCount($this->getCount())
             ->setPage($this->page);
 
         $this['form']['count']->setValue($this->getPerPage());
-        $this->model->limit($paginator->getOffset(), $paginator->getLength());
+
+        if ($applyLimitPaging === true) {
+            $this->model->limit($paginator->getOffset(), $paginator->getLength());
+        }
     }
 
     protected function createComponentForm($name)

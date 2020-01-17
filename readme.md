@@ -12,4 +12,22 @@ DataGrid for [Nette Framework](http://nette.org/) (PHP 5.3).
 
 Installation
 =============
-Download and extract to libs dir or use [Packagist] (https://packagist.org/packages/o5/grido) with [Composer](http://getcomposer.org/).
+```
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/PilulkaDistribuce/grido.git"
+    }
+  ],
+  "require": {
+    "o5/grido": "0.9.1"
+  },
+}
+```
+
+Change Log
+=============
+v0.9.1
+- added $applyLimitPaging (Grid.php #879)
+- added setCount method (Grid.php #866)
