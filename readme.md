@@ -21,13 +21,13 @@ Installation
     }
   ],
   "require": {
-    "o5/grido": "0.9.1"
+    "o5/grido": "0.9.0.1"
   },
 }
 ```
 
 Change Log
 =============
-v0.9.1
+v0.9.0.1
 - added $applyLimitPaging (Grid.php #879)
 - added setCount method (Grid.php #866)
